@@ -1,0 +1,14 @@
+<%= form_with url: "/static_pages", method: :post do |f| %>
+    <%= f.label :query, "Display Collection:" %>
+    <%= f.search_field "query" %>
+    <%= f.submit "Display" %>
+<% end %>
+<% unless @collection.nil? %>
+    <% @collection.each do |picture| %>
+        <a href=<%= picture.url %>><img src=<%= picture.src["small"] %> alt="Pexels picture"></a>
+        <p>by <a href=<%= picture.user.url %>><%= picture.user.name %></a></p>
+        <br>
+    <% end %>
+<% else %>
+<p>Invalid collection-id</p>
+<% end %>
